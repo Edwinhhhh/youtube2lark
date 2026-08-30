@@ -1,4 +1,4 @@
-# yt2feishu
+# yt2Lark
 
 Turn a YouTube URL into a clean Markdown transcript, with an optional Feishu Docs upload step.
 
