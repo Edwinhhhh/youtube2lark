@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>yt2feishu Markdown Prototype</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel input-panel">
+        <div class="brand-row">
+          <div>
+            <p class="eyebrow">yt2feishu</p>
+            <h1>YouTube 转 Markdown</h1>
+          </div>
+          <span class="status-pill" id="envStatus">Local</span>
+        </div>
+
+        <form id="convertForm" class="form">
+          <label class="field">
+            <span>YouTube 链接</span>
+            <input
+              id="urlInput"
+              name="url"
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              autocomplete="off"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>字幕语言优先级</span>
+            <input id="langsInput" name="langs" value="zh-Hans,zh-Hant,zh-CN,zh,en" />
+          </label>
+
+          <div class="login-row">
+            <label class="toggle-field">
+              <input id="useChromeCookiesInput" type="checkbox" checked />
+              <span>使用浏览器登录态</span>
+            </label>
+            <select id="cookiesFromBrowserInput" aria-label="选择浏览器">
+              <option value="chrome">Chrome</option>
+              <option value="edge" selected>Edge</option>
+              <option value="firefox">Firefox</option>
+            </select>
+          </div>
+
+          <details class="advanced">
+            <summary>高级选项</summary>
+            <div class="advanced-grid">
+              <label class="field">
+                <span>cookies.txt 路径</span>
+                <input id="cookiesInput" placeholder="C:\path\to\cookies.txt" />
+              </label>
+              <label class="field">
+                <span>JS runtime</span>
+                <input id="jsRuntimesInput" value="node" />
+              </label>
+              <label class="field">
+                <span>EJS 组件源</span>
+                <input id="remoteComponentsInput" value="ejs:github" />
+              </label>
+            </div>
+          </details>
+
+          <div class="actions">
+            <button id="submitButton" class="primary-button" type="submit">
+              <span class="button-icon">MD</span>
+              生成 Markdown
+            </button>
+            <a id="downloadButton" class="secondary-button disabled" href="#" download>下载 .md</a>
+          </div>
+        </form>
+
+        <div id="message" class="message" aria-live="polite"></div>
+      </section>
+
+      <section class="panel preview-panel">
+        <div class="preview-header">
+          <div>
+            <p class="eyebrow">Preview</p>
+            <h2 id="previewTitle">等待生成</h2>
+          </div>
+          <span id="cueCount" class="status-pill">0 cues</span>
+        </div>
+
+        <div id="videoMeta" class="video-meta hidden">
+          <img id="thumbnail" alt="" />
+          <div>
+            <strong id="videoTitle"></strong>
+            <p id="videoChannel"></p>
+            <p id="captionMeta"></p>
+          </div>
+        </div>
+
+        <textarea
+          id="markdownPreview"
+          class="markdown-preview"
+          spellcheck="false"
+          placeholder="生成后会在这里显示 Markdown 内容。"
+        ></textarea>
+      </section>
+    </main>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
